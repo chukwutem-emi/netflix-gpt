@@ -1,9 +1,28 @@
-import React from 'react'
+import React from 'react';
+import {signOut } from "firebase/auth";
+import { auth } from '../utils/firebase';
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const Header = () => {
+  const user = useSelector(store => store.user)
+  const navigate = useNavigate();
+  const handleSignOut = () => {
+    signOut(auth).then(() => {
+      // Sign-out successful.
+      navigate("/")
+    }).catch((error) => {
+      // An error happened.
+      navigate("/error")
+    });
+  }
   return (
-    <div className="top-0 right-0 left-0 absolute shadow-lg bg-black z-40">
-      <img src='https://assets.nflxext.com/ffe/siteui/vlv3/47c2bc92-5a2a-4f33-8f91-4314e9e62ef1/web/NG-en-20240916-TRIFECTA-perspective_67af3080-dbfa-4a8e-80e0-8ed53e5cc6ac_small.jpg' alt='netflix-bg-img'/>
+    <div className="top-0 right-0 left-0 fixed shadow-lg z-40 flex justify-between bg-gray-400">
+      <img src='https://assets.nflxext.com/us/ffe/siteui/common/icons/nficon2023.ico' alt='logo' />
+      {user && <div className='flex'>
+        <img  className="w-16 rounded-[50%] mr-4" src={user.photoURL} alt='profile-photo'/>
+        <button onClick={handleSignOut} type='button' className='text-white font-bold mr-8 mt-8'>(Sign Out)</button>
+      </div>}
     </div>
   )
 }
