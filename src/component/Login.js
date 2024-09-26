@@ -3,17 +3,16 @@ import Header from './Header';
 import { checkValidData } from '../utils/validate';
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../utils/firebase';
-import { useNavigate } from 'react-router-dom';
 import {updateProfile } from "firebase/auth";
 import { useDispatch } from 'react-redux';
 import { addUsers } from '../utils/userSlice';
+import { NETFLIX_IMG, USER_AVATAR } from '../utils/constants';
 
 const Login = () => {
   const dispatch = useDispatch()
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
   const [loading, setLoading] = useState(false); 
-  const navigate = useNavigate()
 
   const name = useRef(null)
   const email = useRef(null);
@@ -35,13 +34,12 @@ const Login = () => {
       .then((userCredential) => {
         const user = userCredential.user;
         updateProfile(user, {
-          displayName: name.current.value, photoURL: "https://avatars.githubusercontent.com/u/163314856?v=4"
+          displayName: name.current.value, photoURL:USER_AVATAR
         }).then(() => {
           // Profile updated!
           const {uid, email, displayName, photoURL} = auth.currentUser;
           dispatch(addUsers({uid:uid, email:email, displayName:displayName, photoURL:photoURL}));
           setLoading(false);
-          navigate("/browse");
         }).catch((error) => {
           // An error occurred
           setErrorMessage(error.message)
@@ -62,7 +60,6 @@ const Login = () => {
         const user = userCredential.user;
         console.log(user);
         setLoading(false)
-        navigate("/browse")
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -81,7 +78,7 @@ const Login = () => {
     <div>
         <Header />
         <div className='absolute'>
-        <img src='https://assets.nflxext.com/ffe/siteui/vlv3/47c2bc92-5a2a-4f33-8f91-4314e9e62ef1/web/NG-en-20240916-TRIFECTA-perspective_67af3080-dbfa-4a8e-80e0-8ed53e5cc6ac_small.jpg' alt='netflix-bg-img'/>
+        <img src={NETFLIX_IMG} alt='netflix-bg-img'/>
         </div>
         <form onSubmit={(e) => e.preventDefault()} className='w-[30rem] mt-20 mx-auto shadow-lg p-8 bg-black bg-opacity-80  absolute'>
             <h1 className='text-3xl font-bold text-white mb-[1.5rem]'>{isSignInForm ? "Sign In" : "Sign Up"}</h1>
