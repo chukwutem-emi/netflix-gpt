@@ -1,5 +1,4 @@
 
-
 const VideoTitle = ({title, overview}) => {
   return (
     <div className="pt-[20%] px-20 absolute bg-gradient-to-r from-black w-screen aspect-video">
