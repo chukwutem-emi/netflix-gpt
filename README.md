@@ -35,6 +35,10 @@
 - TMDB Image CDN Url
 - Made the Browse Page amazing with tailwindCss
 - usePopularMovies Custom Hook
+- GPT Search Page
+- GPT Search Bar
+- Multi-language Feature in our App
+- Integrate GPT API
 
 ## Features
 
