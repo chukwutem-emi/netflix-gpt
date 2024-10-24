@@ -15,7 +15,6 @@ const GptMovieSuggestions = () => {
     return uniqueMovies;
   };
   const unique = removeDuplicate(text)
-  console.log("unique:", unique)
   if (!text) {
     return <p className="font-bold text-lg text-red-500 bg-white w-[30rem] my-2 mx-auto text-center p-4 rounded-lg">movie not found!</p>;
   }

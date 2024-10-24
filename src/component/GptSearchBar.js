@@ -25,7 +25,6 @@ const GptSearchBar = () => {
     ];
     const filteredMovies = allMovies.filter((movie) => movie.title.toLowerCase().includes(searchTerm.toLowerCase()));
     dispatch(addSearchMovie(filteredMovies));
-    console.log("FILTERED:",filteredMovies);
 
   };
   return (
