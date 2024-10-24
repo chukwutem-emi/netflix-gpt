@@ -77,18 +77,20 @@ const Login = () => {
   return (
     <div>
         <Header />
-        <div className='absolute'>
-        <img src={NETFLIX_IMG} alt='netflix-bg-img'/>
+        <div className='absolute inset-0'>
+        <img className='w-full h-full object-cover' src={NETFLIX_IMG} alt='netflix-bg-img'/>
         </div>
-        <form onSubmit={(e) => e.preventDefault()} className='w-[30rem] mt-20 mx-auto shadow-lg p-8 bg-black bg-opacity-80  absolute'>
-            <h1 className='text-3xl font-bold text-white mb-[1.5rem]'>{isSignInForm ? "Sign In" : "Sign Up"}</h1>
-            {!isSignInForm && (<input ref={name} type= "text"  placeholder="Full Name" className="p-4 w-[100%] bg-gray-700 rounded-lg mb-[1.5rem] text-white" autoComplete='on' required/>)}
-            <input ref={email} type= "email"  placeholder="email address" className="p-4 w-[100%] bg-gray-700 rounded-lg mb-[1.5rem] text-white" autoComplete='on' required/>
-            <input ref={password} type= "password"  placeholder="password" className="p-4 w-[100%] bg-gray-700 rounded-lg mb-[1.5rem] text-white" required/>
-            <p className='text-red-500 mb-4'>{errorMessage}</p>
-            <button type="submit" className=" p-4 w-[100%] bg-red-400 rounded-lg text-white font-sans mb-[1.5rem]" title='click  here👆🏿' onClick={handleButtonClick} disabled={loading}>{loading ? "Processing....." : isSignInForm ? "Sign In" : "Sign Up"}</button>
-            <p className='text-white ml-4 cursor-pointer' onClick={toggleSignInForm}>{isSignInForm ? "New to Netflix? Sign Up Now" : "Already registered?, Sign In Now"}</p>
-        </form>
+        <div className='w-[30rem] my-0 mx-auto xl:my-0 lg:my-0 md:my-0 sm:my-0 xl:mx-auto lg:mx-auto md:mx-auto sm:mx-auto'>
+          <form onSubmit={(e) => e.preventDefault()} className='xl:w-[30rem] lg:w-[30rem] md:w-[30rem] sm:w-[30rem] my-28 mx-[0.3rem] shadow-lg p-8 bg-black xl:bg-black lg:bg-black md:bg-black sm:bg-black bg-opacity-80 xl:bg-opacity-80 lg:bg-opacity-80 md:bg-opacity-80 sm:bg-opacity-80 fixed'>
+              <h1 className='text-base xl:text-3xl lg:text-3xl md:text-3xl sm:text-3xl font-bold xl:font-bold lg:font-bold md:font-bold sm:font-bold text-white xl:text-white lg:text-white md:text-white sm:text-white mb-[1.5rem] xl:mb-[1.5rem] lg:mb-[1.5rem] md:mb-[1.5rem] sm:mb-[1.5rem]'>{isSignInForm ? "Sign In" : "Sign Up"}</h1>
+              {!isSignInForm && (<input ref={name} type= "text"  placeholder="Full Name" className="w-[100%] bg-gray-700 rounded-lg mb-[1.5rem] text-white p-2.5 xl:p-4 lg:p-4 md:p-4 sm:p-4" autoComplete='on' required/>)}
+              <input ref={email} type= "email"  placeholder="email address" className="p-2.5 xl:p-4 lg:p-4 md:p-4 sm:p-4 w-[100%] bg-gray-700 rounded-lg mb-[1.5rem] text-white" autoComplete='on' required/>
+              <input ref={password} type= "password"  placeholder="password" className="p-2.5 xl:p-4 lg:p-4 md:p-4 sm:p-4 w-[100%] bg-gray-700 rounded-lg mb-[1.5rem] text-white" required/>
+              <p className='text-red-500 mb-4'>{errorMessage}</p>
+              <button type="submit" className=" p-2.5 xl:p-4 lg:p-4 md:p-4 sm:p-4 w-[100%] bg-red-400 rounded-lg text-white font-sans mb-[1.5rem]" title='click  here👆🏿' onClick={handleButtonClick} disabled={loading}>{loading ? "Processing....." : isSignInForm ? "Sign In" : "Sign Up"}</button>
+              <p className='text-white ml-4 cursor-pointer' onClick={toggleSignInForm}>{isSignInForm ? "New to Netflix? Sign Up Now" : "Already registered?, Sign In Now"}</p>
+          </form>
+        </div>
     </div>
   )
 }

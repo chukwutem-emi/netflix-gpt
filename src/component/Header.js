@@ -15,6 +15,7 @@ const Header = () => {
   const navigate = useNavigate();
   const handleSignOut = () => {
     signOut(auth).then(() => {
+      dispatch(removeUsers())
       // Sign-out successful.
     }).catch((error) => {
       // An error happened.
@@ -44,19 +45,19 @@ const Header = () => {
     dispatch(changeLanguage(e.target.value));
   }
   return (
-    <div className="top-0 right-0 left-0 fixed shadow-lg z-40 flex justify-between bg-gray-400">
+    <div className="top-0 right-0 left-0 fixed shadow-lg z-40 flex  justify-between md:justify-between sm:justify-between bg-gray-600  md:flex-row mx-auto md:mx-0">
       <img src={LOGO} alt='logo' />
       {user && <div className='flex'>
-        {showGptSearch && <select title='Select your preferred language'className='cursor-pointer mt-2 mb-2 bg-black text-white p-2 text-lg' onChange={handleLanguageChange}>
+        {showGptSearch && <select title='Select your preferred language'className='cursor-pointer md:mt-2 sm:mt-2 md:mb-2 bg-black text-white md:p-2 sm:p-2 md:text-lg sm:text-lg text-sm' onChange={handleLanguageChange}>
           {
             SUPPORTED_LANGUAGES.map((lang) => (
               <option key={lang.identifier} value={lang.identifier}>{lang.name}</option>
             ))
           }
         </select>}
-        <button className='p-2 mx-4 my-2 text-lg cursor-pointer bg-blue-600 text-white rounded-lg' title='click here!' onClick={handleGptSearchClick}>{showGptSearch ? "Home Page" : "GPT Search"}</button>
-        <img  className="w-16 rounded-[50%] mr-4" src={user.photoURL} alt='profile-photo'/>
-        <button onClick={handleSignOut} type='button' className='text-white font-bold mr-8 mt-8'>(Sign Out)</button>
+        <button className='text-sm p-1 md:p-2 sm:p-1 mx-4 my-2 md:text-lg sm:text-lg cursor-pointer sm:bg-green-500 md:bg-green-500 bg-blue-600 text-white rounded-lg' title='click here!' onClick={handleGptSearchClick}>{showGptSearch ? "Home Page" : "GPT Search"}</button>
+        <img  className="w-8 md:w-16 sm:w-16 rounded-[50%] md:mr-4 sm:mr-4 mr-2 mt-2 mb-2" src={user.photoURL} alt='profile-photo'/>
+        <button onClick={handleSignOut} type='button' className='text-white md:font-bold sm:font-bold text-sm md:text-lg sm:text-lg md:mr-8 sm:mr-8 md:my-auto sm:my-auto  mr-2'>(Sign Out)</button>
       </div>}
     </div>
   )
